@@ -4,11 +4,19 @@
 
 > **Learners × YPICS Joint Logistics Seminar — Presentation Preparation (October 31, 2026, 14:00)**  
 > 대학생 물류·SCM 학술교류를 위한 연구 발표 자료. **예정된 세미나의 준비 자료**이며, 발표 완료 또는 수상 실적을 의미하지 않습니다.  
-> [Official seminar announcement / 공식 안내](https://www.instagram.com/p/De6u9tXj2_h/) · [Live Research Web / 연구 페이지](https://fabflow-oht-phase3-deadlock.vercel.app/) · [Research Poster (A2)](docs/FABFLOW_Conference_Poster_A2.pdf) · [Full Report / 상세 보고서 (12p)](docs/FABFLOW_Research_Editorial_Report_KO_EN.pdf) · [English README](README_EN.md)
+> [Official seminar announcement / 공식 안내](https://www.instagram.com/p/De6u9tXj2_h/) · [Live Research Web / 연구 페이지](https://fabflow-oht-phase3-deadlock.vercel.app/) · [Conference Poster / 발표 포스터](docs/CONFERENCE_POSTER.md) · [Detailed Methodology / 연구 해설](docs/TECHNICAL_EXPLANATION.md) · [English README](README_EN.md)
 
-![Research diagram: directed semiconductor OHT rail network](assets/figures/05_directed_network.png)
+![Research diagram: directed semiconductor OHT rail network](assets/figures/05_directed_network.svg)
 
 <sub>**Figure 1.** 제가 연구에 사용한 48-node / 82-directed-link 가상 레일 네트워크. 실제 반도체 공장 내부도면이나 삼성전자 제공 데이터가 아닙니다.</sub>
+
+## Repository publication / 공개 현황
+
+> **GitHub publication note (2026-10-26).** This GitHub version currently includes bilingual research text, seminar notes, synthetic benchmark mean results, paired inference and SVG scientific figures. The original full simulator source files, detailed per-run datasets and binary A2/12-page PDF downloads are not yet uploaded through this connection. The full prepared 39-file source/PDF archive remains separately available as a downloadable project artifact in the corresponding ChatGPT conversation. Do not treat this GitHub checkout alone as an end-to-end reproduction of all 960 simulations.
+>
+> 공개 사이트의 3D 운행 화면은 설명용 SVG 개념 시각화이며 실제 FAB 데이터와 연동한 디지털트윈이 아닙니다.
+
+[Conference poster and research figures](docs/CONFERENCE_POSTER.md) · [Detailed technical explanation](docs/TECHNICAL_EXPLANATION.md) · [Experiment summary CSV](results/summary_600.csv) · [Paired inference CSV](results/paired_inference.csv)
 
 ## Research at a glance / 연구 개요
 
@@ -47,7 +55,7 @@ FAB에서는 웨이퍼가 여러 공정을 오가고, 천장 레일을 따라 �
 
 ## 02 | System Architecture / 시스템 설계
 
-![Pipeline of synthetic FAB research, from graph to paired inference](assets/figures/04_system_pipeline.png)
+![Pipeline of synthetic FAB research, from graph to paired inference](assets/figures/04_system_pipeline.svg)
 
 실제 연구 흐름을 한 방향으로 고정했습니다. **FAB 네트워크 생성 → 운송 요청 → 배차와 경로 선택 → 자원 점유/반환 → 시간에 따른 상태 변화 → 평가 데이터 저장 → 통계 분석** 순서입니다.
 
@@ -161,7 +169,7 @@ s  : current node / destination zone / scenario / activity level
 
 ## 06 | Results: Full-route vs Partial Reservations
 
-![Policy comparison from 600 simulation runs](assets/figures/01_policy_comparison.png)
+![Policy comparison from 600 simulation runs](assets/figures/01_policy_comparison.svg)
 
 <sub>**Figure 2.** 각 시나리오에서 40개 matched evaluation seeds의 평균 완료 작업 수. 이 그래프는 `results/summary_600.csv`를 다시 시각화했습니다.</sub>
 
@@ -183,7 +191,7 @@ s  : current node / destination zone / scenario / activity level
 
 ## 07 | Q-learning: Did learning itself help?
 
-![Matched-seed bootstrap effects and confidence intervals](assets/figures/02_paired_effects.png)
+![Matched-seed bootstrap effects and confidence intervals](assets/figures/02_paired_effects.svg)
 
 <sub>**Figure 3.** 95% seed-paired bootstrap confidence intervals. 좌측은 자원 예약 제어 구조 차이, 우측은 Q 학습 전후 차이.</sub>
 
@@ -201,7 +209,7 @@ s  : current node / destination zone / scenario / activity level
 
 ## 08 | Guard Ablation: Wait-for Graph가 줄인 것은?
 
-![Wait-for cycle detection before and after guard](assets/figures/03_cycle_guard_ablation.png)
+![Wait-for cycle detection before and after guard](assets/figures/03_cycle_guard_ablation.svg)
 
 <sub>**Figure 4.** 12대, 수요 급증 환경의 평균 순환대기 신호. `results/guard_ablation_360.csv` 기반.</sub>
 
@@ -215,7 +223,7 @@ OHT 12대와 수요 급증을 조합한 환경에서 보호장치를 적용하�
 
 **[Open the live research website](https://fabflow-oht-phase3-deadlock.vercel.app/)**
 
-![Earlier FAB FLOW 3D presentation interface (v2), not the Phase 3 trace](assets/interface/earlier_prototype_v2.png)
+[Earlier FAB FLOW 3D presentation interface (v2), not the Phase 3 trace](https://fabflow-oht-phase3-deadlock.vercel.app/)
 
 <sub>**Interface reference.** FAB FLOW의 초기 3D 프런트엔드 화면. 본 연구의 **Phase 3 Python 로그를 그대로 재생한 이미지가 아니라**, 가상 FAB/차량/정책 비교를 설명하기 위한 **이전 UI 단계 스크린샷**입니다. 현재 Phase 3 결과 확인은 위의 공식 배포 링크를 사용하세요.</sub>
 
@@ -299,8 +307,8 @@ python run_ablation.py
 | Resource | Link |
 |---|---|
 | Live research website | [Open FAB FLOW](https://fabflow-oht-phase3-deadlock.vercel.app/) |
-| A2 conference-style poster | [PDF](docs/FABFLOW_Conference_Poster_A2.pdf) |
-| 12-page bilingual research dossier | [PDF](docs/FABFLOW_Research_Editorial_Report_KO_EN.pdf) |
+| A2 conference-style poster | [PDF](docs/CONFERENCE_POSTER.md) |
+| 12-page bilingual research dossier | [PDF](docs/TECHNICAL_EXPLANATION.md) |
 | English research overview | [README_EN.md](README_EN.md) |
 | Simulation assumptions & reproducibility | [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) |
 | Raw results | [`results/`](results/) |
