@@ -82,10 +82,6 @@ for i,r in enumerate(out):
 ax.axvline(0,linestyle='--',color='gray');ax.set_yticks(range(len(out)),[f"{r['scenario']} : {r['comparison']}" for r in out],fontsize=8)
 ax.invert_yaxis();ax.set_xlabel('Paired difference in jobs completed (95% CI)');ax.set_title('Prespecified contrasts, bootstrap over paired seeds');ax.grid(axis='x',alpha=.3)
 fig.tight_layout();fig.savefig(OUT/'paired_600.png',dpi=150);plt.close(fig)
-print('
----- SUMMARY ----
-',summary.to_string(index=False,float_format=lambda x:f'{x:.3f}'))
-print('
----- INFERENCE ----
-',pd.DataFrame(out).to_string(index=False,float_format=lambda x:f'{x:.4f}'))
+print('\n---- SUMMARY ----\n',summary.to_string(index=False,float_format=lambda x:f'{x:.3f}'))
+print('\n---- INFERENCE ----\n',pd.DataFrame(out).to_string(index=False,float_format=lambda x:f'{x:.4f}'))
 print('TOTAL ELAPSED',time.time()-t0,flush=True)
