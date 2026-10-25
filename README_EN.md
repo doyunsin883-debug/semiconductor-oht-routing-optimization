@@ -4,9 +4,9 @@
 
 **Context:** [Learners × YPICS Joint Logistics/SCM Academic Exchange — October 31, 2026, 14:00 (scheduled)](https://www.instagram.com/p/De6u9tXj2_h/) · Presentation material in preparation, not a claim of a completed conference presentation.
 
-**Resources:** [Live research web](https://fabflow-oht-phase3-deadlock.vercel.app/) · [A2 research poster](docs/FABFLOW_Conference_Poster_A2.pdf) · [12-page bilingual report](docs/FABFLOW_Research_Editorial_Report_KO_EN.pdf) · [Korean README](README.md) · [Reproducibility notes](docs/REPRODUCIBILITY.md)
+**Resources:** [Live research web](https://fabflow-oht-phase3-deadlock.vercel.app/) · [A2 research poster](docs/FABFLOW_Conference_Poster_A2.pdf) · [12-page bilingual report](docs/FABFLOW_GitHub_Research_Brief_KO_EN.pdf) · [Korean README](README.md) · [Reproducibility notes](docs/REPRODUCIBILITY.md)
 
-![Directed 48-node network](assets/figures/05_directed_network.png)
+![Directed 48-node network](assets/figures/05_directed_network.svg)
 
 ## 1. The question that started the project
 
@@ -74,7 +74,7 @@ The same seed controls request generation across policies. Comparing the resulti
 
 ## 8. Results
 
-![Mean completed jobs across 3 scenarios and 5 policies](assets/figures/01_policy_comparison.png)
+![Mean completed jobs across 3 scenarios and 5 policies](assets/figures/01_policy_comparison.svg)
 
 | Scenario | Full route | Partial shortest | Partial dynamic | Untrained Q | Trained Q |
 |---|---:|---:|---:|---:|---:|
@@ -84,7 +84,7 @@ The same seed controls request generation across policies. Comparing the resulti
 
 The partial-reservation dynamic policy improved mean completed jobs over the full-route reference by **+5.525** (normal), **+13.425** (demand surge), and **+5.875** (closure). All three paired 95% confidence intervals excluded zero. These are **simulated policy differences**, not measured improvements at an operating semiconductor fab. Since the comparison changes the resource-control architecture, the entire difference cannot be attributed to routing intelligence alone.
 
-![Paired bootstrap effects](assets/figures/02_paired_effects.png)
+![Paired bootstrap effects](assets/figures/02_paired_effects.svg)
 
 The incremental effect of trained versus untrained Q-learning was **−0.150** jobs in normal operation, **+0.575** during a demand surge, and **+0.025** with a rail closure. Only demand surge produced a confidence interval excluding zero **[+0.200,+1.000]**, with a Holm-adjusted sign-test p value of **0.0369**.
 
@@ -92,7 +92,7 @@ An important counterexample is that the **partial shortest-path policy performed
 
 ## 9. Wait-for Graph ablation
 
-![Potential wait-for cycle signal changes](assets/figures/03_cycle_guard_ablation.png)
+![Potential wait-for cycle signal changes](assets/figures/03_cycle_guard_ablation.svg)
 
 In a 12-vehicle demand-surge condition, potential wait-cycle signal accumulation dropped from a mean of **9.45 seconds per run** with the guard disabled to **0 seconds** with the guard enabled. The metric is a model-defined risk signal; it is not a count of permanent physical deadlocks. In some conditions a guard can also reduce throughput by withholding otherwise feasible moves.
 
@@ -100,7 +100,7 @@ In a 12-vehicle demand-surge condition, potential wait-cycle signal accumulation
 
 **[Live interactive research web](https://fabflow-oht-phase3-deadlock.vercel.app/)**
 
-![Early research interface concept](assets/interface/earlier_prototype_v2.png)
+[Early research interface concept — live web visualization](https://fabflow-oht-phase3-deadlock.vercel.app/)
 
 *The screenshot above illustrates an earlier FAB FLOW interface version, not the exact Phase 3 evaluation replay. The deployed research page contains synthetic summary statistics and a conceptual FAB animation. The CSV and Python files, not the moving illustration, are the source of experimental metrics.*
 
