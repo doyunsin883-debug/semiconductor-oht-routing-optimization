@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-25",
+  "phase": "3",
+  "network": {
+    "nodes": 48,
+    "edges": 82
+  },
+  "conditions": "same network and Poisson requests, seed common across policies",
+  "seeds": [
+    40001,
+    40040
+  ],
+  "training_seeds": [
+    1500,
+    1619
+  ],
+  "training_episodes": 120,
+  "training_updates": 18447,
+  "training_q_states": 3358,
+  "eval_runs": 600,
+  "duration_s": 1500,
+  "n_vehicles": 9,
+  "scenarios": [
+    "normal",
+    "surge",
+    "closure"
+  ],
+  "policies": [
+    "full_atomic_dynamic",
+    "partial_shortest",
+    "partial_dynamic",
+    "partial_rl_untrained",
+    "partial_rl_trained"
+  ],
+  "limitations": "Synthetic. Conservative lookahead WFG guard not industrial deadlock proof; independent synthetic reports, no fab access.",
+  "metrics": "Jobs completed in 25m, denied node grants, vehicle waiting seconds, completed-only lead time subject to censoring"
+}
