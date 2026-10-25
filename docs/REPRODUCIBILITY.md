@@ -22,7 +22,7 @@ This repository presents results of a synthetic semiconductor OHT simulation exp
 
 ## Repository release status
 
-The recorded Phase 3 results are available in `results/summary_600.csv` and `results/paired_inference.csv`. Extended records, experiment runners, generated PDFs and original PNG figures are included in the separately prepared research delivery archive; some binary assets may not be available directly in this GitHub commit. Check file existence before treating linked files as downloadable.
+The complete Phase 3 experiment code, 600-run raw evaluation CSV, 360-run guard ablation CSV, tabular Q model, representative 800-second trace, PNG figures, summary tables and paired inference are now committed to GitHub. The A2 PDF and bilingual research brief are generated from committed data by `scripts/build_publications.py` and committed by GitHub Actions. The original separate 12-page editorial report remains in the offline ChatGPT delivery archive. Do not confuse it with the GitHub-generated research brief.
 
 ## Quick calculations
 
@@ -40,3 +40,12 @@ for scenario in ("normal", "surge", "closure"):
 ```
 
 This calculation verifies published means, not the full seed-level statistical inference. To reproduce confidence intervals and p-values exactly, use the per-run records and the complete Python simulation archive.
+
+
+## Verified GitHub Actions
+
+- [Unit tests](../.github/workflows/tests.yml) — Python 3.12, tests must pass.
+- [600 + 360 benchmark reproduction](../.github/workflows/benchmark.yml) — reruns experiments and checks all policy/scenario completion means against the saved CSV (maximum tolerance 0.001).
+- [GitHub PDF generation](../.github/workflows/publications.yml) — builds the A2 PDF poster and bilingual research brief with ReportLab and Korean fonts.
+
+**Data download:** [600 evaluation rows](../results/heldout_600_runs.csv) · [360 sensitivity rows](../results/guard_ablation_360.csv) · [Q-learning state-action table](../results/model_q.json).
