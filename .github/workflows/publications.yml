@@ -1,0 +1,40 @@
+name: Build and publish research PDFs
+on:
+  push:
+    paths:
+      - 'scripts/build_publications.py'
+      - 'results/summary_600.csv'
+      - '.github/workflows/publications.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Korean font and ReportLab
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-nanum
+          python -m pip install reportlab
+      - name: Build the printable PDF editions
+        run: python scripts/build_publications.py
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fabflow-research-publications
+          path: |
+            docs/FABFLOW_Conference_Poster_A2.pdf
+            docs/FABFLOW_GitHub_Research_Brief_KO_EN.pdf
+      - name: Commit generated PDFs to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/FABFLOW_Conference_Poster_A2.pdf docs/FABFLOW_GitHub_Research_Brief_KO_EN.pdf
+          git diff --staged --quiet || (git commit -m "docs: publish generated print-ready research PDFs" && git push)
