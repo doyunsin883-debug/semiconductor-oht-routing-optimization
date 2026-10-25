@@ -275,7 +275,6 @@ python run_ablation.py
 
 > **Seminar context (planned):** Learners × YPICS Joint Logistics/SCM Academic Exchange — *research presentation preparation*  
 > **Official organizer announcement:** [Instagram / YPICS × Learners](https://www.instagram.com/p/De6u9tXj2_h/)  
-> **Presentation outline and suggested script:** [docs/SEMINAR_PRESENTATION_KO.md](docs/SEMINAR_PRESENTATION_KO.md)
 
 제가 발표에서 가장 전달하고 싶은 문장은 다음과 같습니다.
 
@@ -302,7 +301,6 @@ python run_ablation.py
 | Live research website | [Open FAB FLOW](https://fabflow-oht-phase3-deadlock.vercel.app/) |
 | A2 conference-style poster | [PDF](docs/FABFLOW_Conference_Poster_A2.pdf) |
 | 12-page bilingual research dossier | [PDF](docs/FABFLOW_Research_Editorial_Report_KO_EN.pdf) |
-| Korean research presentation script | [Presentation Notes](docs/SEMINAR_PRESENTATION_KO.md) |
 | English research overview | [README_EN.md](README_EN.md) |
 | Simulation assumptions & reproducibility | [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) |
 | Raw results | [`results/`](results/) |
