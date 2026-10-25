@@ -1,0 +1,65 @@
+name: Reproduce Phase 3 benchmark outputs
+on:
+  push:
+    paths:
+      - '.github/workflows/benchmark.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install scientific dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Preserve reference summary
+        run: cp results/summary_600.csv /tmp/fabflow_reference_summary.csv
+      - name: Run 120 training episodes and 600 held-out evaluations
+        run: python run_phase3.py
+      - name: Run 360 fleet and safety sensitivity experiments
+        run: python run_ablation.py
+      - name: Verify reproduced throughput means
+        run: |
+          python - <<'PY'
+          import csv
+          def rows(path):
+              with open(path,newline='',encoding='utf-8') as f:
+                  return {(r['scenario'],r['policy']):float(r['completed_mean']) for r in csv.DictReader(f)}
+          old=rows('/tmp/fabflow_reference_summary.csv')
+          new=rows('results/summary_600.csv')
+          assert old.keys()==new.keys(), 'Scenario/policy set changed'
+          diffs={k:abs(old[k]-new[k]) for k in old}
+          print('Maximum completed mean delta:',max(diffs.values()))
+          assert max(diffs.values()) < 0.001, 'Saved and reproduced results disagree'
+          PY
+      - name: Store complete reproducibility archive
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fabflow-phase3-complete-benchmark
+          if-no-files-found: warn
+          path: |
+            results/heldout_600_runs.csv
+            results/guard_ablation_360.csv
+            results/trace_800.json
+            results/model_q.json
+            results/metadata.json
+            results/completed_600.png
+            results/paired_600.png
+            results/summary_600.csv
+            results/paired_inference.csv
+      - name: Publish verified experiment evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/heldout_600_runs.csv results/guard_ablation_360.csv
+          git add results/trace_800.json results/model_q.json results/metadata.json
+          git add results/completed_600.png results/paired_600.png
+          git diff --staged --quiet || (git commit -m "data: publish reproduced phase-3 benchmark records and model" && git push)
