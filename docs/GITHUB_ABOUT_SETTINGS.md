@@ -1,17 +1,13 @@
-# Suggested GitHub Repository Settings
+# Recommended GitHub About information
 
-**Repository:** `semiconductor-oht-routing-optimization`
+These settings are displayed beneath the repository name in GitHub's right-side **About** panel and cannot be set through the currently connected file-only GitHub publishing actions.
 
-**Description**
+**Description:** Semiconductor OHT routing & deadlock-aware optimization | Learners × YPICS Joint Logistics Seminar — Presentation Preparation (Oct 31, 2026)
 
-Semiconductor OHT routing & deadlock-aware optimization | Learners × YPICS Joint Logistics Seminar — presentation preparation (Oct 31, 2026)
+**Website:** https://fabflow-oht-phase3-deadlock.vercel.app/
 
-**Website**
+**Topics:** semiconductor, oht, amhs, logistics, operations-research, q-learning, industrial-engineering, deadlock-avoidance, simulation, research-portfolio
 
-https://fabflow-oht-phase3-deadlock.vercel.app/
+**Claim:** Joint academic-exchange event scheduled for October 31, 2026. This repository represents presentation preparation, not a completed seminar talk, conference acceptance or award.
 
-**Topics**
-
-`industrial-engineering`, `semiconductor`, `oht`, `amhs`, `logistics`, `simulation`, `reinforcement-learning`, `q-learning`, `deadlock-avoidance`, `operations-research`, `research-portfolio`
-
-**Seminar status:** The official public notice schedules the Learners × YPICS event for October 31, 2026. Presentation completion is not claimed; the presentation script is not included in the repository.
+**Publications:** Two CI-generated PDF editions are linked in the README. They are not the complete 12-page offline editorial PDF.
